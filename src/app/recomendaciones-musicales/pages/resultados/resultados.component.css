@@ -1,0 +1,23 @@
+.contenedor {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .contenedorInterno {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .infoBuscada {
+    text-align: center;
+    align-self: center;
+  }
+
+  .resultados{
+    text-align: center;
+    align-self: center;
+  }
