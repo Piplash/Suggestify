@@ -1,0 +1,7 @@
+<div class="contenedorInput" *ngIf="boolean==false">
+    <input type="text" class="form-control inputArtista" placeholder="Escribe una canción!" #cancionBuscada>
+    <button type="button" class="btn btn-success" (click)="buscarCancion()">Buscar</button>
+</div>
+<div class="contenedorInput" *ngIf="boolean==true">
+    {{ respuesta | json }}
+</div>
