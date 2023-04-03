@@ -1,11 +1,30 @@
 <div class="contenedor">
     <div class="contenedorInterno">
         <div class="infoBuscada">
-            <h1>Buscaste: </h1>
-            <p>Canción: {{infoArtista.nombreCancion}}</p>
-            <p>Artista: {{infoArtista.artista}}</p>
-            <p>Album: {{infoArtista.nombreAlbum}}</p>
-            <p><img [src]="this.infoArtista.imagen" alt=""></p>
+            <div class="row titulo">
+                <h5><strong>Te recomendamos basados en: </strong></h5>
+                <div class=postTitulo></div>
+            </div>
+           <div class="row">
+            <div class="col foto">
+                <img [src]="this.infoArtista.imagen" alt="">
+            </div>
+            <div class="col detalles">
+                <div class="row detallesFila">
+                    <p><strong>Canción:</strong> {{infoArtista.nombreCancion}}</p>
+                </div>
+                <div class="row detallesFila">
+                    <p><strong>Artista:</strong> {{infoArtista.artista}}</p>
+                </div>
+                <div class="row detallesFila">
+                    <p><strong>Álbum:</strong> {{infoArtista.nombreAlbum}}</p>
+                </div>
+                <div class="row detallesFila">
+                    <p><strong>Lanzamiento:</strong> {{infoArtista.lanzamiento}}</p>
+                </div>
+            </div>
+           </div>
+           
         </div>
         <div class="resultados">
             <h1>Título 2</h1>

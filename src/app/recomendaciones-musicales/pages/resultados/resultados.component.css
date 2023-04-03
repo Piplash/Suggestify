@@ -15,9 +15,45 @@
   .infoBuscada {
     text-align: center;
     align-self: center;
+    border: 1px solid white;
+    background-image: url('src/assets/fondo.png');
+    border-radius: 10px;
+  }
+
+  .infoBuscada img {
+    max-width: 80%;
+    box-shadow: 6px 6px 2px 0px #4a4949;
+  }
+
+  .titulo{
+    text-align: left;
+    padding-left: 5%;
+    padding-top: 10px;
+    padding-bottom:10px;
+  }
+
+  .postTitulo{
+    width: 90%;
+    height: 1px;
+    background-color: #8f8f8f;
+  }
+
+  .foto{
+    padding-bottom: 15px;
+  }
+
+  .detalles{
+    display: grid;
+  }
+
+  .detallesFila{
+    text-align:left;
   }
 
   .resultados{
     text-align: center;
     align-self: center;
+    margin-top: 30px;
   }
+
+ 

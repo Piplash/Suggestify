@@ -19,4 +19,12 @@ export class SpotifyService {
   public getTrack(cancion: string): any{
     return this.http.get(this.spotifyEndpoint+`search?type=track&q=${cancion}`, this.httpOptions);
   }
+
+  public getGeneros(idAlbum: string): any{
+    return this.http.get(this.spotifyEndpoint+`albums/${idAlbum}`, this.httpOptions);
+  }
+
+  public getRecomendaciones(idArtista: string, idCancion: string): any{
+    return this.http.get(this.spotifyEndpoint+`recommendations?seed_artists=${idArtista}&seed_tracks=${idCancion}&limit=5`, this.httpOptions);
+  }
 }

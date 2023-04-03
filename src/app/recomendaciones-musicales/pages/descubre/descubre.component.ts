@@ -23,11 +23,15 @@ export class DescubreComponent implements OnInit{
                private route: Router ){
     this.boolean = false;
     this.respuesta = {
-      id: '',
+      idCancion: '',
+      idArtista: '',
+      idAlbum: '',
       nombreCancion: '',
       artista: '',
       nombreAlbum: '',
-      imagen: ''
+      imagen: '',
+      lanzamiento: '',
+      generos: ''
     }
 
     localStorage.setItem('spId', '')
@@ -63,37 +67,45 @@ export class DescubreComponent implements OnInit{
     this.spotifyService.getTrack(cancion).subscribe(
       (data: any) =>{
         console.log(data);
+
+
         this.respuesta = {
-          id: data.tracks.items[0].id,
+          idCancion: data.tracks.items[0].id,
+          idArtista: data.tracks.items[0].artists[0].id,
+          idAlbum: data.tracks.items[0].album.id,
           nombreCancion: data.tracks.items[0].name,
           artista: data.tracks.items[0].artists[0].name,
           nombreAlbum: data.tracks.items[0].album.name,
-          imagen: data.tracks.items[0].album.images[2].url
+          imagen: data.tracks.items[0].album.images[1].url,
+          lanzamiento: data.tracks.items[0].album.release_date
         }
         
         const promesas = [
-          console.log("SET 1"),
-          localStorage.setItem('spId', this.respuesta.id),
-          console.log("SET 2"),
+          localStorage.setItem('spIdCancion', this.respuesta.idCancion),
+          localStorage.setItem('spIdArtista', this.respuesta.idArtista),
+          localStorage.setItem('spIdAlbum', this.respuesta.idAlbum!),
           localStorage.setItem('spNombreCancion', this.respuesta.nombreCancion),
-          console.log("SET 3"),
           localStorage.setItem('spArtista', this.respuesta.artista),
-          console.log("SET 4"),
           localStorage.setItem('spNombreAlbum', this.respuesta.nombreAlbum),
-          console.log("SET 5"),
-          localStorage.setItem('spImagen', this.respuesta.imagen)
+          localStorage.setItem('spImagen', this.respuesta.imagen),
+          localStorage.setItem('spLanzamiento', this.respuesta.lanzamiento)
         ]
     
         Promise.all(promesas).then(() => {
           console.log("NAVEGANDO")
           this.route.navigateByUrl('recomendaciones-musicales/resultados');
+          //this.obtenerGeneros(this.respuesta.idAlbum!);
         });
       }
     );
-
-    
-    
-  
   }
 
+  /*public obtenerGeneros(idAlbum: string){
+    this.spotifyService.getGeneros(idAlbum).subscribe(
+      (data: any) => {
+        let generos = data.genres;
+        console.log(generos)
+      }
+    )
+  }*/
 }

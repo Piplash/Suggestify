@@ -8,6 +8,7 @@ body{
     color: white !important;
     height: 100vh;
     overflow: hidden;
+    font-family: 'Quicksand', sans-serif;
 }
 
 .contenedor-secciones{
@@ -16,7 +17,7 @@ body{
 }
 
 .gradientDiv{
-    background: linear-gradient(-45deg, rgb(255, 146, 213), rgb(11, 52, 107), rgb(20, 82, 163), rgb(255, 146, 213));
+    background: linear-gradient(-45deg, rgb(37, 124, 71), rgb(78, 172, 125), rgb(95, 192, 196), rgb(209, 145, 190));
     background-size: 400% 400%;
     animation: gradient 15s ease infinite;    
 }

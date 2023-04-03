@@ -1,7 +1,11 @@
 export interface IInfoArtista {
-    id: string,
+    idCancion: string,
+    idArtista: string,
+    idAlbum?: string,
     nombreCancion: string,
     artista: string,
     nombreAlbum: string,
-    imagen: string
+    imagen: string,
+    lanzamiento: string,
+    generos?: any
 }
