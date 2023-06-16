@@ -1,7 +1,5 @@
-import { Component } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
+import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/dev';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-inicio',
@@ -9,17 +7,31 @@ import { Router } from '@angular/router';
   styleUrls: ['./inicio.component.css']
 })
 
-export class InicioComponent {
+export class InicioComponent implements OnInit{
 
   public url = {
     token: environment.AUTH +
     '?client_id=' + environment.client_id + 
     '&response_type=token' +
     '&redirect_uri=' + encodeURIComponent(environment.redirect_uri) +
+    '&scope=playlist-modify-public%20playlist-modify-private' +
     '&expires_in=3600'
   }
 
-  constructor (private authService: AuthService, private router: Router) {}
+  public textoBoton: string;
+
+  constructor ( ) {
+    this.textoBoton = "";
+  }
+
+  ngOnInit(): void {
+    
+    if(localStorage.getItem("idioma")=="EN"){
+      this.textoBoton = "Discover New Music!";
+    }else{
+      this.textoBoton = "¡Descubre Nueva Música!";
+    }
+  }
 
   public spotifyAuth(): void {
     window.location.href = this.url.token;

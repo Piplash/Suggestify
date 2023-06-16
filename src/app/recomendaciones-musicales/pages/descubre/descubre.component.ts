@@ -16,8 +16,10 @@ export class DescubreComponent implements OnInit{
 
   @ViewChild('cancionBuscada') cancionBuscada!: any;
   
-  public respuesta: IInfoArtista;
-  public boolean: boolean;
+  public respuesta  : IInfoArtista;
+  public boolean    : boolean;
+  public placeholder: string;
+  public textoBoton : string;
 
   constructor( private spotifyService: SpotifyService,
                private route: Router ){
@@ -33,6 +35,9 @@ export class DescubreComponent implements OnInit{
       lanzamiento: '',
       generos: ''
     }
+
+    this.placeholder  = "";
+    this.textoBoton   = "";
 
     localStorage.setItem('spId', '')
     localStorage.setItem('spNombreCancion', '')
@@ -60,15 +65,20 @@ export class DescubreComponent implements OnInit{
       window.location.href = environment.redirect_uri;
     }
 
+    if(localStorage.getItem("idioma") == "EN"){
+      this.placeholder  = "Enter a song";
+      this.textoBoton   = "Discover!";
+    }else{
+      this.placeholder  = "Escribe una canción";
+      this.textoBoton   = "¡Descubre!";
+    }
   }
+
 
   public buscarCancion(): void{
     let cancion = this.cancionBuscada.nativeElement.value;
     this.spotifyService.getTrack(cancion).subscribe(
       (data: any) =>{
-        console.log(data);
-
-
         this.respuesta = {
           idCancion: data.tracks.items[0].id,
           idArtista: data.tracks.items[0].artists[0].id,
@@ -92,7 +102,6 @@ export class DescubreComponent implements OnInit{
         ]
     
         Promise.all(promesas).then(() => {
-          console.log("NAVEGANDO")
           this.route.navigateByUrl('recomendaciones-musicales/resultados');
           //this.obtenerGeneros(this.respuesta.idAlbum!);
         });

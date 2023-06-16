@@ -1,1 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
+.modal-open .modal {
+  display: flex !important;
+  align-items: center !important;
+  .modal-dialog {
+    flex-grow: 1;
+  }
+}
