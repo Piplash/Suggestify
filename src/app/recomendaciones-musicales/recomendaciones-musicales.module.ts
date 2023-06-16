@@ -8,6 +8,7 @@ import { AcercaDeComponent } from './pages/acerca-de/acerca-de.component';
 import { PrivacidadComponent } from './pages/privacidad/privacidad.component';
 
 import { RecomendacionesMusicalesRoutingModule } from './recomendaciones-musicales-routing.module';
+import { FooterComponent } from './shared/footer/footer.component';
 
 
 

@@ -14,7 +14,7 @@ export class NavbarComponent implements OnInit{
   public idioma     : string;
 
   constructor(){
-    this.tituloNav  = "Descubre";
+    this.tituloNav  = "Suggestify";
     this.inicio     = "Inicio";
     this.acercaDe   = "Acerca de";
     this.privacidad = "Privacidad";
@@ -27,13 +27,11 @@ export class NavbarComponent implements OnInit{
     }
 
     if(localStorage.getItem("idioma") == "EN"){
-      this.tituloNav  = "Discover";
       this.inicio     = "Home";
       this.acercaDe   = "About";
       this.privacidad = "Privacy";
       this.idioma     = "ES";
     }else{
-      this.tituloNav  = "Descubre";
       this.inicio     = "Inicio";
       this.acercaDe   = "Acerca de";
       this.privacidad = "Privacidad";

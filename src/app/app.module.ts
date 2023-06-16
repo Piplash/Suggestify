@@ -8,12 +8,14 @@ import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { NavbarComponent } from './recomendaciones-musicales/shared/navbar/navbar.component';
+import { FooterComponent } from './recomendaciones-musicales/shared/footer/footer.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    NavbarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

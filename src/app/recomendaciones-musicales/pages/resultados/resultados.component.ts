@@ -6,6 +6,7 @@ import { IRecomendaciones } from 'src/app/interfaces/recomendaciones';
 import { IUsuario } from 'src/app/interfaces/usuario';
 
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-resultados',
@@ -30,6 +31,7 @@ export class ResultadosComponent implements OnInit{
 
   public placeholder        : string;
   public textoBoton         : string;
+  public textoBoton2        : string;
 
   public textoModal: any;
 
@@ -39,7 +41,8 @@ export class ResultadosComponent implements OnInit{
   public closeResult!: string;
 
   constructor( private spotifyService: SpotifyService,
-               private modalService: NgbModal ){
+               private modalService: NgbModal,
+               private route: Router ){
     this.infoArtista = {
       idCancion: localStorage.getItem('spIdCancion')!,
       idArtista: localStorage.getItem('spIdArtista')!,
@@ -70,6 +73,7 @@ export class ResultadosComponent implements OnInit{
     this.lanzamiento          = "";
     this.placeholder          = "";
     this.textoBoton           = "";
+    this.textoBoton2           = "";
 
     this.textoModal = {
       titulo: "",
@@ -93,11 +97,13 @@ export class ResultadosComponent implements OnInit{
       this.lanzamiento          = "Release Date";
       this.placeholder          = "Name your playlist";
       this.textoBoton           = "Create!";
+      this.textoBoton2          = "Search Again!";
 
       this.textoModal = {
         titulo: "Your playlist is ready!",
         bajada: "Find it in your Spotify account :)"
       }
+
     }else{
       this.idioma = "ES"
 
@@ -109,6 +115,7 @@ export class ResultadosComponent implements OnInit{
       this.lanzamiento          = "Lanzamiento";
       this.placeholder          = "Dale un nombre a tu playlist";
       this.textoBoton           = "Crear!";
+      this.textoBoton2          = "Vuelve a Buscar!";
 
       this.textoModal = {
         titulo: "Tu playlist está lista!",
@@ -174,8 +181,10 @@ export class ResultadosComponent implements OnInit{
         }
       }
     )
+  }
 
-    
+  public volver(): void{
+    this.route.navigateByUrl('recomendaciones-musicales/descubre');
   }
 
   

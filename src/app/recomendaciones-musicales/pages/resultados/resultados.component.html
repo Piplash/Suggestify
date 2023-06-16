@@ -1,5 +1,9 @@
 <div class="contenedor">
+    
     <div class="contenedorInterno">
+        <div class="btnVolver">
+            <button type="button" class="btn btn-success botonPL" (click)="volver()" >{{ textoBoton2 }}</button>
+        </div>
         <div class="infoBuscada">
 
             <div class="row titulo">
@@ -35,7 +39,9 @@
             <hr class="hr">
             <div class="row filaRecomendacion" *ngFor="let recomendacion of recomendaciones">
                 <div class="col colRecomendacionImg">
-                    <img src="{{recomendacion.imagen}}">
+                    <a href="{{recomendacion.linkRepro}}" target="_blank">
+                        <img src="{{recomendacion.imagen}}">
+                    </a>
                 </div>
                 <div class="col colRecomendacion">{{recomendacion.nombreCancion}}</div>
                 <div class="col colRecomendacion">{{recomendacion.nombreArtista}}</div>
@@ -52,8 +58,7 @@
             <div class="col-md-6 divButton">
                 <button type="button" class="btn btn-success botonPL" (click)="crearPlayList()" >{{ textoBoton }}</button>
             </div>
-            
-            
+        
         </div>
     </div>
 </div>

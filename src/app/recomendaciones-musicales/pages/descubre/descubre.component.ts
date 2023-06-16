@@ -61,7 +61,6 @@ export class DescubreComponent implements OnInit{
           }; 
         })[0].split('=')[1];
       localStorage.setItem('at', token);
-      console.log(localStorage.getItem('at'))
       window.location.href = environment.redirect_uri;
     }
 

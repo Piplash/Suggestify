@@ -1,1 +1,43 @@
-<p>privacidad works!</p>
+<div class="container" *ngIf="idioma == 'ES'">
+    <div class="titulo">
+        <h4>
+            Política de Privacidad
+        </h4>
+    </div>
+    <div class="cuerpo">
+        <p>
+            Suggestify fue desarrollada como una aplicación de código abierto utilizando la API de Spotify. Al usar esta aplicación aceptas la utilización de tu cuenta de Spotify
+            para obtener sugerencias y creación de playlists.
+        </p>
+        <p>
+            Esta aplicación no almacena ningún tipo de dato. Al iniciar sesión se genera un token de acceso el cual es utilizado para realizar peticiones a la API de Spotify. Este token es
+            almacenado unicamente en el dispositivo del usuario y tiene una validez de una hora.
+        </p>
+        <p>
+            En caso de querer revocar los permisos de Suggestify, puedes hacerlo a través de la página <a href="https://www.spotify.com/es/account/apps/" target="_blank">'Mis Aplicaciones'</a>, buscar Suggestify y clickear en 'Quitar Acceso'. 
+            Una guía más detallada sobre este proceso puede ser encontrada <a href="https://support.spotify.com/es/article/spotify-on-other-apps/" target="_blank">acá</a>.
+        </p>
+    </div>
+</div>
+
+<div class="container" *ngIf="idioma == 'EN'">
+    <div class="titulo">
+        <h4>
+            Privacy Policy
+        </h4>
+    </div>
+    <div class="cuerpo">
+        <p>
+            Suggestify was developed as an open source web app powered by the Spotify API. By using this app you agree to the use of your Spotify Account to get suggestions
+            and to create playlists
+        </p>
+        <p>
+            This app doesn't store any kind of data. By logging in with your account an access token is generated which is used to make petitions to the Spotify API. This token is only stored
+            on the user device and is valid for an hour.
+        </p>
+        <p>
+            You can always revoke Suggestify's permissions by visting <a href="https://www.spotify.com/us/account/apps/" target="_blank">'My Apps'</a> page, look for 'Suggestify' and click 'Remove Access'. 
+            A more detailed guide about this process can be found <a href="https://support.spotify.com/us/article/spotify-on-other-apps/" target="_blank">here</a>.
+        </p>
+    </div>
+</div>

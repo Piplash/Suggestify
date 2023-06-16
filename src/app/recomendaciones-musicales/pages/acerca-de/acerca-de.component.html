@@ -1,1 +1,53 @@
-<p>acerca-de works!</p>
+<div class="container" *ngIf="idioma == 'ES'">
+    <div class="titulo">
+        <h4>
+            Acerca de Suggestify
+        </h4>
+    </div>
+    <div class="cuerpo">
+        <p>
+            Suggestify es una aplicación web diseñada para entregarte 5 recomendaciones musicales en base a una canción de tu elección. 
+            Te gustó una canción y quieres encontrar más similares? Prueba Suggestify!           
+        </p>
+        <h5 class="tituloInterno">¿Cómo funciona?</h5>
+        <p>
+            Para conseguir esto, nos conectamos a la <b>API oficial de Spotify</b> mediante el inicio de sesión del usuario, permitiéndonos en primer lugar
+            ingresar una canción y obtener como respuesta una sugerencia de 5 canciones similares. Luego, con las sugerencias listas, puedes crear una playlist 
+            directo a tu cuenta con el nombre que quieras!
+        </p>
+        <h5 class="tituloInterno">¿Puedo ver el código?</h5>
+        <p>
+            Sí! Este es más que nada un proyecto personal y sin fines más allá de la entretención. Puedes revisar el código en mi <a href="https://github.com/Piplash/Suggestify" target="_blank">perfil de GitHub</a>.
+        </p>
+        <h5 class="tituloInterno">¿Se almacenan datos?</h5>
+        <p>
+            No! Este proyecto solo utiliza <i>endpoints</i> para entregar una canción a Spotify, recibir sugerencias y crear playlists. Para más detalles puedes leer la <a href="recomendaciones-musicales/privacidad">Política de Privacidad</a>
+        </p>
+    </div>
+</div>
+
+<div class="container" *ngIf="idioma == 'EN'">
+    <div class="titulo">
+        <h4>
+            About Suggestify
+        </h4>
+    </div>
+    <div class="cuerpo">
+        <p>
+            Suggestify is a webapp designed to suggest you 5 songs according to the one you enter. Loved a song and want to find more music like that? Try Suggestify!          
+        </p>
+        <h5 class="tituloInterno">How does it work?</h5>
+        <p>
+            We connect directly to the <b>Official Spotify API</b> through your login, allowing us to enter a song and get similar suggestions as a response. Then you can even create a playlist
+            with the suggestions and name it as you please!
+        </p>
+        <h5 class="tituloInterno">Can I see the code?</h5>
+        <p>
+            Sure! This is just a personal project for nothing but fun. You can check the code on my <a href="https://github.com/Piplash/Suggestify" target="_blank">GitHub Profile</a>..
+        </p>
+        <h5 class="tituloInterno">Is data stored?</h5>
+        <p>
+            Nope! This project only uses <i>endpoints</i> to send a song to Spotify, get suggestions as a response and create a playlists. You can check the <a href="recomendaciones-musicales/privacidad">Privacy Policy</a> for more details.
+        </p>
+    </div>
+</div>

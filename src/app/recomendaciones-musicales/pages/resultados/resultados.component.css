@@ -19,6 +19,10 @@ a:hover{
   border: 0;
 }
 
+.btnVolver{
+  margin-bottom: 10px;
+}
+
 /*DIV BASADO EN*/
 
 .contenedor {
@@ -46,22 +50,24 @@ a:hover{
 
 .infoBuscada {
   text-align: center;
-  border: 1px solid white;
+  /*border: 1px solid white;
   background:
     radial-gradient(black 15%, transparent 16%) 0 0,
     radial-gradient(black 15%, transparent 16%) 8px 8px,
     radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
     radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
     background-color:#282828;
-    background-size:16px 16px;
-  border-radius: 10px;
+    background-size:16px 16px;*/
+  background-color: #ffffff47;
+  color: black;
+  border-radius: 30px;
   padding: 20px;
   margin-bottom: 20px;
 }
 
 .infoBuscada img {
   max-width: 100%;
-  box-shadow: 3px 3px 3px 0px #ffffff30
+  box-shadow: 3px 3px 3px 0px #00000030
 }
 
 .titulo {
@@ -86,15 +92,17 @@ a:hover{
 /*DIV REULSTADOS*/
 .resultados {
   text-align: center;
-  border: 1px solid white;
+  /*border: 1px solid white;
   background:
     radial-gradient(black 15%, transparent 16%) 0 0,
     radial-gradient(black 15%, transparent 16%) 8px 8px,
     radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
     radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
     background-color:#282828;
-    background-size:16px 16px;
-  border-radius: 10px;
+    background-size:16px 16px;*/
+  background-color: #ffffff47;
+  color: black;  
+  border-radius: 30px;
   margin-top: 15px;
   padding: 20px;
 }
@@ -111,6 +119,13 @@ a:hover{
 .colRecomendacion{
   text-align: center;
   align-self: center;
+  width: 40%;
+}
+
+.colRecomendacionPlay{
+  text-align: center;
+  align-self: center;
+  max-width: 15%;
 }
 
 .crearPlayList{
@@ -152,6 +167,14 @@ a:hover{
     text-align: center;
   }
 
+  .infoBuscada{
+    padding-bottom: 0;
+  }
+
+  .infoBuscada img{
+    max-width: 90%;
+  }
+
   .detalles{
     text-align: center;
   }
@@ -161,18 +184,29 @@ a:hover{
   }
 
   .filaRecomendacion img{
-    width: 150px;
+    width: 120px;
+    margin-bottom: 5px;
   }
 
   .hr2{
     background-color: white;
     border: 1px solid;
-    margin-top: 3px;
     width: 80%;
     display: inline-block;
+    margin-top: 5px;
   }
 
-  .row{
+  .colRecomendacion{
+    text-align: center;
+    min-width: 100%;
+    margin-top: 10px;
+  }
+  
+  .colRecomendacionPlay{
+    display:none;
+  }
+
+  .crearPlayList{
     display: inline;
   }
 

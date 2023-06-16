@@ -3,7 +3,7 @@
 }
 
 .contenedorInput {
-    height: 100vh; /* Establece la altura al 100% del viewport */
+    height: 70%; /* Establece la altura al 100% del viewport */
   }
 
 .contenedorInput .row {
