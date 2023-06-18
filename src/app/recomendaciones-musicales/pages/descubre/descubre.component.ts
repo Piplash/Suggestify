@@ -21,6 +21,8 @@ export class DescubreComponent implements OnInit{
   public placeholder: string;
   public textoBoton : string;
 
+  public letraPresionada: any;
+
   constructor( private spotifyService: SpotifyService,
                private route: Router ){
     this.boolean = false;
@@ -106,6 +108,12 @@ export class DescubreComponent implements OnInit{
         });
       }
     );
+  }
+
+  public enterPresionado(event: any){
+    if(event.key == "Enter"){
+      this.buscarCancion();
+    }
   }
 
   /*public obtenerGeneros(idAlbum: string){

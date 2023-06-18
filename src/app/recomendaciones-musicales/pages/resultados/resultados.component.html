@@ -53,7 +53,7 @@
         </div>
         <div class="crearPlayList row">
             <div class="col-md-6 divInput">
-                <input type="text" class="form-control inputPL" placeholder="{{ placeholder }}" #nombrePlayList>
+                <input type="text" class="form-control inputPL" placeholder="{{ placeholder }}" (keyup)="enterPresionado($event)" #nombrePlayList>
             </div>
             <div class="col-md-6 divButton">
                 <button type="button" class="btn btn-success botonPL" (click)="crearPlayList()" >{{ textoBoton }}</button>

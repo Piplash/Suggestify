@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 divInput">
-              <input type="text" class="form-control inputArtista" placeholder="{{placeholder}}" #cancionBuscada>
+              <input type="text" class="form-control inputArtista" placeholder="{{placeholder}}" (keyup)="enterPresionado($event)" #cancionBuscada>
             </div>
             <div class="col-md-6 divButton">
               <button type="button" class="btn btn-success btnDescubre" (click)="buscarCancion()">{{textoBoton}}</button>

@@ -189,20 +189,12 @@ export class ResultadosComponent implements OnInit{
 
   
   public openModal(): void {
-    this.modalService.open(this.myModal, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Cerrado con: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Descartado con: ${this.getDismissReason(reason)}`;
-    });
+    this.modalService.open(this.myModal, {ariaLabelledBy: 'modal-basic-title'});
   }
 
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'Presionado Esc';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'Clic en el fondo';
-    } else {
-      return `Cerrado con: ${reason}`;
+  public enterPresionado(event: any){
+    if(event.key == "Enter"){
+      this.crearPlayList();
     }
   }
 
