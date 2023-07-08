@@ -2,12 +2,15 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 divInput">
-              <input type="text" class="form-control inputArtista" placeholder="{{placeholder}}" (keyup)="enterPresionado($event)" #cancionBuscada>
+              <input type="text" class="form-control inputArtista" placeholder="{{placeholder}}" (keyup)="enterPresionado($event)" maxlength="50" #cancionBuscada>
             </div>
             <div class="col-md-6 divButton">
               <button type="button" class="btn btn-success btnDescubre" (click)="buscarCancion()">{{textoBoton}}</button>
             </div>
-          </div>
+        </div>
+        <div class="row">
+          <label #labelError class="labelError" hidden>{{labelErrorUps}}</label>
+        </div>     
     </div>
 </div>
   

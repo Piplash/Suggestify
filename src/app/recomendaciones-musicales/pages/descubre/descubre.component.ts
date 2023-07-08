@@ -15,17 +15,22 @@ import { Router } from '@angular/router';
 export class DescubreComponent implements OnInit{
 
   @ViewChild('cancionBuscada') cancionBuscada!: any;
+  @ViewChild('labelError') labelError!: any;
   
   public respuesta  : IInfoArtista;
   public boolean    : boolean;
   public placeholder: string;
   public textoBoton : string;
+  public labelErrorUps: string;
 
   public letraPresionada: any;
+
+  public busquedaNoValida: boolean;
 
   constructor( private spotifyService: SpotifyService,
                private route: Router ){
     this.boolean = false;
+    this.busquedaNoValida = false;
     this.respuesta = {
       idCancion: '',
       idArtista: '',
@@ -40,6 +45,7 @@ export class DescubreComponent implements OnInit{
 
     this.placeholder  = "";
     this.textoBoton   = "";
+    this.labelErrorUps = "";
 
     localStorage.setItem('spId', '')
     localStorage.setItem('spNombreCancion', '')
@@ -69,43 +75,51 @@ export class DescubreComponent implements OnInit{
     if(localStorage.getItem("idioma") == "EN"){
       this.placeholder  = "Enter a song";
       this.textoBoton   = "Discover!";
+      this.labelErrorUps = "Ups. No matches, try again!"
     }else{
       this.placeholder  = "Escribe una canción";
       this.textoBoton   = "¡Descubre!";
+      this.labelErrorUps = "Ups. No hay resultados, intenta de nuevo!"
     }
   }
 
 
   public buscarCancion(): void{
     let cancion = this.cancionBuscada.nativeElement.value;
-    this.spotifyService.getTrack(cancion).subscribe(
+    let cancionEscapada = cancion.replace(/[&<>"'|*`=\/]/g, '');
+    this.spotifyService.getTrack(cancionEscapada).subscribe(
       (data: any) =>{
-        this.respuesta = {
-          idCancion: data.tracks.items[0].id,
-          idArtista: data.tracks.items[0].artists[0].id,
-          idAlbum: data.tracks.items[0].album.id,
-          nombreCancion: data.tracks.items[0].name,
-          artista: data.tracks.items[0].artists[0].name,
-          nombreAlbum: data.tracks.items[0].album.name,
-          imagen: data.tracks.items[0].album.images[1].url,
-          lanzamiento: data.tracks.items[0].album.release_date
+        if(data.tracks.items.length > 0){
+          this.busquedaNoValida == false;
+          this.respuesta = {
+            idCancion: data.tracks.items[0].id,
+            idArtista: data.tracks.items[0].artists[0].id,
+            idAlbum: data.tracks.items[0].album.id,
+            nombreCancion: data.tracks.items[0].name,
+            artista: data.tracks.items[0].artists[0].name,
+            nombreAlbum: data.tracks.items[0].album.name,
+            imagen: data.tracks.items[0].album.images[1].url,
+            lanzamiento: data.tracks.items[0].album.release_date
+          }
+          
+          const promesas = [
+            localStorage.setItem('spIdCancion', this.respuesta.idCancion),
+            localStorage.setItem('spIdArtista', this.respuesta.idArtista),
+            localStorage.setItem('spIdAlbum', this.respuesta.idAlbum!),
+            localStorage.setItem('spNombreCancion', this.respuesta.nombreCancion),
+            localStorage.setItem('spArtista', this.respuesta.artista),
+            localStorage.setItem('spNombreAlbum', this.respuesta.nombreAlbum),
+            localStorage.setItem('spImagen', this.respuesta.imagen),
+            localStorage.setItem('spLanzamiento', this.respuesta.lanzamiento)
+          ]
+      
+          Promise.all(promesas).then(() => {
+            this.route.navigateByUrl('recomendaciones-musicales/resultados');
+            //this.obtenerGeneros(this.respuesta.idAlbum!);
+          });
+        }else{
+          this.labelError.nativeElement.hidden = false;
         }
-        
-        const promesas = [
-          localStorage.setItem('spIdCancion', this.respuesta.idCancion),
-          localStorage.setItem('spIdArtista', this.respuesta.idArtista),
-          localStorage.setItem('spIdAlbum', this.respuesta.idAlbum!),
-          localStorage.setItem('spNombreCancion', this.respuesta.nombreCancion),
-          localStorage.setItem('spArtista', this.respuesta.artista),
-          localStorage.setItem('spNombreAlbum', this.respuesta.nombreAlbum),
-          localStorage.setItem('spImagen', this.respuesta.imagen),
-          localStorage.setItem('spLanzamiento', this.respuesta.lanzamiento)
-        ]
-    
-        Promise.all(promesas).then(() => {
-          this.route.navigateByUrl('recomendaciones-musicales/resultados');
-          //this.obtenerGeneros(this.respuesta.idAlbum!);
-        });
       }
     );
   }
@@ -115,13 +129,4 @@ export class DescubreComponent implements OnInit{
       this.buscarCancion();
     }
   }
-
-  /*public obtenerGeneros(idAlbum: string){
-    this.spotifyService.getGeneros(idAlbum).subscribe(
-      (data: any) => {
-        let generos = data.genres;
-        console.log(generos)
-      }
-    )
-  }*/
 }
