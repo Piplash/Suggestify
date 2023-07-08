@@ -86,42 +86,51 @@ export class DescubreComponent implements OnInit{
 
   public buscarCancion(): void{
     let cancion = this.cancionBuscada.nativeElement.value;
-    let cancionEscapada = cancion.replace(/[&<>"'|*`=\/]/g, '');
-    this.spotifyService.getTrack(cancionEscapada).subscribe(
-      (data: any) =>{
-        if(data.tracks.items.length > 0){
-          this.busquedaNoValida == false;
-          this.respuesta = {
-            idCancion: data.tracks.items[0].id,
-            idArtista: data.tracks.items[0].artists[0].id,
-            idAlbum: data.tracks.items[0].album.id,
-            nombreCancion: data.tracks.items[0].name,
-            artista: data.tracks.items[0].artists[0].name,
-            nombreAlbum: data.tracks.items[0].album.name,
-            imagen: data.tracks.items[0].album.images[1].url,
-            lanzamiento: data.tracks.items[0].album.release_date
+    if(/^\s/.test(cancion)){
+      cancion = cancion.replace(/^\s/, '');
+    }
+
+    if(cancion != ''){
+      let cancionEscapada = cancion.replace(/[&<>"'|*`=\/]/g, '');
+      this.spotifyService.getTrack(cancionEscapada).subscribe(
+        (data: any) =>{
+          if(data.tracks.items.length > 0){
+            this.busquedaNoValida == false;
+            this.respuesta = {
+              idCancion: data.tracks.items[0].id,
+              idArtista: data.tracks.items[0].artists[0].id,
+              idAlbum: data.tracks.items[0].album.id,
+              nombreCancion: data.tracks.items[0].name,
+              artista: data.tracks.items[0].artists[0].name,
+              nombreAlbum: data.tracks.items[0].album.name,
+              imagen: data.tracks.items[0].album.images[1].url,
+              lanzamiento: data.tracks.items[0].album.release_date
+            }
+            
+            const promesas = [
+              localStorage.setItem('spIdCancion', this.respuesta.idCancion),
+              localStorage.setItem('spIdArtista', this.respuesta.idArtista),
+              localStorage.setItem('spIdAlbum', this.respuesta.idAlbum!),
+              localStorage.setItem('spNombreCancion', this.respuesta.nombreCancion),
+              localStorage.setItem('spArtista', this.respuesta.artista),
+              localStorage.setItem('spNombreAlbum', this.respuesta.nombreAlbum),
+              localStorage.setItem('spImagen', this.respuesta.imagen),
+              localStorage.setItem('spLanzamiento', this.respuesta.lanzamiento)
+            ]
+        
+            Promise.all(promesas).then(() => {
+              this.route.navigateByUrl('recomendaciones-musicales/resultados');
+              //this.obtenerGeneros(this.respuesta.idAlbum!);
+            });
+          }else{
+            this.labelError.nativeElement.hidden = false;
           }
-          
-          const promesas = [
-            localStorage.setItem('spIdCancion', this.respuesta.idCancion),
-            localStorage.setItem('spIdArtista', this.respuesta.idArtista),
-            localStorage.setItem('spIdAlbum', this.respuesta.idAlbum!),
-            localStorage.setItem('spNombreCancion', this.respuesta.nombreCancion),
-            localStorage.setItem('spArtista', this.respuesta.artista),
-            localStorage.setItem('spNombreAlbum', this.respuesta.nombreAlbum),
-            localStorage.setItem('spImagen', this.respuesta.imagen),
-            localStorage.setItem('spLanzamiento', this.respuesta.lanzamiento)
-          ]
-      
-          Promise.all(promesas).then(() => {
-            this.route.navigateByUrl('recomendaciones-musicales/resultados');
-            //this.obtenerGeneros(this.respuesta.idAlbum!);
-          });
-        }else{
-          this.labelError.nativeElement.hidden = false;
         }
-      }
-    );
+      );
+    }else{
+      this.labelError.nativeElement.hidden = false;
+    }
+    
   }
 
   public enterPresionado(event: any){
