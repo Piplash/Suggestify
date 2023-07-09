@@ -151,6 +151,11 @@ a:hover{
   width: 150px;
 }
 
+.spotifyLogo{
+  width:30%;
+  box-shadow: 0px 0px 0px !important;
+}
+
 /*MODAL*/
 
 .modal-body{
@@ -224,5 +229,15 @@ a:hover{
   .botonPL{
       width: 80%;
       min-width: 300px;
+  }
+
+  .spotifyLogo{
+    width:45%;
+    box-shadow: 0px 0px 0px !important;
+  }
+
+  .filaLogo{
+    display: block;
+    padding-bottom: 10px;
   }
 }
